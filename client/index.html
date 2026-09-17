@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Expense Tracker</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<body>
+
+    <header class="dashboard-header">
+        <div>
+            <h1>Expense Tracker</h1>
+            <p>Manage your money smartly</p>
+        </div>
+
+        <button id="addTransactionBtn">
+            + Add Transaction
+        </button>
+    </header>
+
+
+    <main class="dashboard">
+
+        <!-- Summary Cards -->
+        <section class="summary-cards">
+
+            <div class="card balance-card">
+                <h3>Total Balance</h3>
+                <p id="balance">₹0</p>
+            </div>
+
+            <div class="card income-card">
+                <h3>Total Income</h3>
+                <p id="income">₹0</p>
+            </div>
+
+            <div class="card expense-card">
+                <h3>Total Expenses</h3>
+                <p id="expenses">₹0</p>
+            </div>
+            <div class="card">
+                <h3>Transactions</h3>
+                <p id="transactionCount">0</p>
+            </div>
+            <div class="card">
+                <h3>This Month's Expenses</h3>
+                <p id="monthlyExpenses">₹0</p>
+            </div>
+        </section>
+        <!-- Add Transaction Form -->
+<section class="transaction-form">
+
+    <h2>Add Transaction</h2>
+
+    <form id="transactionForm">
+
+        <div>
+            <label for="title">Title</label>
+            <input
+                type="text"
+                id="title"
+                placeholder="e.g. Grocery"
+                required
+            >
+        </div>
+
+        <div>
+            <label for="amount">Amount</label>
+            <input
+                type="number"
+                id="amount"
+                placeholder="e.g. 500"
+                required
+            >
+        </div>
+
+        <div>
+            <label for="type">Type</label>
+            <select id="type" required>
+                <option value="">Select type</option>
+                <option value="income">Income</option>
+                <option value="expense">Expense</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="category">Category</label>
+            <select id="category" required>
+                <option value="">Select category</option>
+                <option value="Food">Food</option>
+                <option value="Transport">Transport</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Bills">Bills</option>
+                <option value="Education">Education</option>
+                <option value="Salary">Salary</option>
+                <option value="Other source">Other source</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="date">Date</label>
+            <input
+                type="date"
+                id="date"
+                required
+            >
+        </div>
+
+        <button type="submit">Add Transaction</button>
+
+    </form>
+
+</section>
+
+        <!-- Recent Transactions -->
+        <section class="transactions-section">
+
+            <div class="section-header">
+                <h2>Recent Transactions</h2>
+                <button id="viewAllBtn">View All</button>
+            </div>
+
+            <div id="transactionList">
+
+                <p class="empty-message">
+                    No transactions yet.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+   
+</body>
+</html>
