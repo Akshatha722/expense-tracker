@@ -5,7 +5,89 @@ const balanceElement = document.getElementById("balance");
 const incomeElement = document.getElementById("income");
 const expensesElement = document.getElementById("expenses");
 const transactionCountElement = document.getElementById("transactionCount");
+
+const darkModeBtn = document.getElementById("darkModeBtn");
+const viewAllBtn = document.getElementById("viewAllBtn");
+
+darkModeBtn.addEventListener("click", function () {
+    document.body.classList.toggle("dark-mode");
+
+    if (document.body.classList.contains("dark-mode")) {
+        localStorage.setItem("darkMode", "enabled");
+    } else {
+        localStorage.setItem("darkMode", "disabled");
+    }
+});
+
+if (localStorage.getItem("darkMode") === "enabled") {
+    document.body.classList.add("dark-mode");
+}
+
+let monthlyBudget = Number(localStorage.getItem("monthlyBudget")) || 0;
+
+const budgetInput = document.getElementById("budgetInput");
+const saveBudgetBtn = document.getElementById("saveBudgetBtn");
+const budgetStatus = document.getElementById("budgetStatus");
+
 let transactions = [];
+
+saveBudgetBtn.addEventListener("click", function () {
+
+    const budget = Number(budgetInput.value);
+
+    if (budget <= 0) {
+        alert("Please enter a valid budget.");
+        return;
+    }
+
+    monthlyBudget = budget;
+    localStorage.setItem("monthlyBudget", monthlyBudget);
+    updateBudgetStatus();
+
+    budgetInput.value = "";
+});
+
+function updateBudgetStatus() {
+
+    const budgetStatus = document.getElementById("budgetStatus");
+
+    if (monthlyBudget === 0) {
+        budgetStatus.innerHTML = "<p>No budget set yet.</p>";
+        return;
+    }
+
+    const currentMonthExpenses = transactions.reduce(function (total, transaction) {
+
+        const transactionDate = new Date(transaction.date);
+        const now = new Date();
+
+        if (
+            transaction.type === "expense" &&
+            transactionDate.getMonth() === now.getMonth() &&
+            transactionDate.getFullYear() === now.getFullYear()
+        ) {
+            return total + transaction.amount;
+        }
+
+        return total;
+
+    }, 0);
+
+    const remaining = monthlyBudget - currentMonthExpenses;
+
+    budgetStatus.innerHTML = `
+        <p>Budget: ₹${monthlyBudget}</p>
+        <p>Spent: ₹${currentMonthExpenses}</p>
+        <p>Remaining: ₹${remaining}</p>
+    `;
+}
+if (monthlyBudget > 0) {
+    updateBudgetStatus();
+}
+
+const searchInput = document.getElementById("searchInput");
+
+
 
 transactionForm.addEventListener("submit", async function (event) {
     event.preventDefault();
@@ -47,12 +129,78 @@ transactionForm.addEventListener("submit", async function (event) {
     }
 });
 
+const categoryFilter = document.getElementById("categoryFilter");
+const typeFilter = document.getElementById("typeFilter");
 
-function displayTransactions() {
+function applyFilters() {
+
+    const selectedCategory = categoryFilter.value;
+    const selectedType = typeFilter.value;
+    const searchText = searchInput.value.toLowerCase();
+    const sortOption = document.getElementById("sortFilter").value;
+    const filteredTransactions = transactions.filter(function (transaction) {
+
+        const matchesSearch =
+            transaction.title.toLowerCase().includes(searchText);
+
+        const matchesCategory =
+            selectedCategory === "all" ||
+            transaction.category === selectedCategory;
+
+        const matchesType =
+            selectedType === "all" ||
+            transaction.type === selectedType;
+
+        return matchesSearch && matchesCategory && matchesType;
+    });
+
+  if (sortOption === "newest") {
+    filteredTransactions.sort(function (a, b) {
+        return new Date(b.date) - new Date(a.date);
+    });
+}
+
+if (sortOption === "oldest") {
+    filteredTransactions.sort(function (a, b) {
+        return new Date(a.date) - new Date(b.date);
+    });
+}
+
+if (sortOption === "highest") {
+    filteredTransactions.sort(function (a, b) {
+        return b.amount - a.amount;
+    });
+}
+
+if (sortOption === "lowest") {
+    filteredTransactions.sort(function (a, b) {
+        return a.amount - b.amount;
+    });
+}  
+    displayTransactions(filteredTransactions);
+}
+
+viewAllBtn.addEventListener("click", function () {
+    searchInput.value = "";
+    categoryFilter.value = "all";
+    typeFilter.value = "all";
+    document.getElementById("sortFilter").value = "newest";
+
+    displayTransactions(transactions);
+});
+
+categoryFilter.addEventListener("change", applyFilters);
+document.getElementById("sortFilter").addEventListener("change", applyFilters);
+
+typeFilter.addEventListener("change", applyFilters);
+
+searchInput.addEventListener("input", applyFilters);
+
+function displayTransactions(filteredTransactions = transactions) {
     
     transactionList.innerHTML = "";
 
-    transactions.forEach(function (transaction) {
+    filteredTransactions.forEach(function (transaction) {
 
         const transactionItem = document.createElement("div");
 
@@ -198,8 +346,120 @@ transactions.forEach(function (transaction) {
 });
 
 document.getElementById("monthlyExpenses").textContent = `₹${monthlyExpenses}`;
+const categorySpending = {};
+
+transactions.forEach(function (transaction) {
+    if (transaction.type === "expense") {
+        if (!categorySpending[transaction.category]) {
+            categorySpending[transaction.category] = 0;
+        }
+
+        categorySpending[transaction.category] += transaction.amount;
+    }
+});
+
+const categorySpendingElement = document.getElementById("categorySpending");
+
+const totalCategorySpending = Object.values(categorySpending).reduce(
+    (total, amount) => total + amount,
+    0
+);
+
+categorySpendingElement.innerHTML = "";
+
+for (const category in categorySpending) {
+
+    const amount = categorySpending[category];
+
+    const percentage = (amount / totalCategorySpending) * 100;
+
+    categorySpendingElement.innerHTML += `
+        <div class="category-item">
+
+            <div>
+                <span class="category-name">${category}</span>
+
+                <div class="category-bar">
+                    <div
+                        class="category-progress"
+                        style="width: ${percentage}%"
+                    ></div>
+                </div>
+            </div>
+
+            <span class="category-amount">
+                ₹${amount}
+            </span>
+
+        </div>
+    `;
+}
+const chartCanvas = document.getElementById("incomeExpenseCanvas");
+
+new Chart(chartCanvas, {
+    type: "bar",
+
+    data: {
+        labels: ["Income", "Expenses"],
+
+        datasets: [
+            {
+                label: "Amount",
+                data: [income, expenses]
+            }
+        ]
+    },
+
+    options: {
+        responsive: true,
+        maintainAspectRatio: false
+    }
+});
+
 
 }
+const monthlyExpensesData = {};
+
+transactions.forEach(function (transaction) {
+
+    if (transaction.type === "expense") {
+
+        const transactionDate = new Date(transaction.date);
+
+        const month = transactionDate.toLocaleString("default", {
+            month: "short",
+            year: "numeric"
+        });
+
+        if (!monthlyExpensesData[month]) {
+            monthlyExpensesData[month] = 0;
+        }
+
+        monthlyExpensesData[month] += transaction.amount;
+    }
+});
+const monthlyExpenseCanvas = document.getElementById("monthlyExpenseCanvas");
+
+new Chart(monthlyExpenseCanvas, {
+    type: "line",
+
+    data: {
+        labels: Object.keys(monthlyExpensesData),
+
+        datasets: [
+            {
+                label: "Monthly Expenses",
+                data: Object.values(monthlyExpensesData),
+                tension: 0.3
+            }
+        ]
+    },
+
+    options: {
+        responsive: true,
+        maintainAspectRatio: false
+    }
+});
 
 async function loadTransactions() {
 
