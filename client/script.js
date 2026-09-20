@@ -168,15 +168,16 @@ if (sortOption === "oldest") {
 
 if (sortOption === "highest") {
     filteredTransactions.sort(function (a, b) {
-        return b.amount - a.amount;
+        return Number(b.amount) - Number(a.amount);
     });
 }
 
 if (sortOption === "lowest") {
     filteredTransactions.sort(function (a, b) {
-        return a.amount - b.amount;
+        return Number(a.amount) - Number(b.amount);
     });
-}  
+}
+
     displayTransactions(filteredTransactions);
 }
 
@@ -227,7 +228,7 @@ function displayTransactions(filteredTransactions = transactions) {
     </div>
 `;
 
-        transactionList.prepend(transactionItem);
+     transactionList.appendChild(transactionItem);  
     });
 }
 
