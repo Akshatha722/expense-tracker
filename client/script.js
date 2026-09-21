@@ -31,6 +31,9 @@ const budgetStatus = document.getElementById("budgetStatus");
 
 let transactions = [];
 
+let incomeExpenseChart;
+let monthlyExpenseChart;
+
 saveBudgetBtn.addEventListener("click", function () {
 
     const budget = Number(budgetInput.value);
@@ -98,6 +101,11 @@ transactionForm.addEventListener("submit", async function (event) {
     const category = document.getElementById("category").value;
     const date = document.getElementById("date").value;
 
+    if (title.trim() === "" || amount <= 0 || !date) {
+    alert("Please enter valid transaction details.");
+    return;
+    }
+
     const transaction = {
         title,
         amount,
@@ -117,12 +125,14 @@ transactionForm.addEventListener("submit", async function (event) {
 
         const savedTransaction = await response.json();
 
-        transactions.push(savedTransaction);
+       transactions.push(savedTransaction);
 
-        displayTransactions();
-        updateSummary();
+displayTransactions();
+updateSummary();
 
-        transactionForm.reset();
+transactionForm.reset();
+
+alert("Transaction added successfully! 🎉");
 
     } catch (error) {
         console.error("Error adding transaction:", error);
@@ -234,6 +244,12 @@ function displayTransactions(filteredTransactions = transactions) {
 
 async function deleteTransaction(index) {
 
+    const confirmDelete = confirm("Are you sure you want to delete this transaction?");
+
+if (!confirmDelete) {
+    return;
+}
+
     const transaction = transactions[index];
 
     try {
@@ -266,8 +282,13 @@ async function editTransaction(index) {
     const newAmount = prompt("Enter new amount:", transaction.amount);
 
     if (newTitle === null || newAmount === null) {
-        return;
-    }
+    return;
+}
+
+if (newTitle.trim() === "" || Number(newAmount) <= 0) {
+    alert("Please enter a valid title and amount.");
+    return;
+}
 
     try {
 
@@ -397,7 +418,11 @@ for (const category in categorySpending) {
 }
 const chartCanvas = document.getElementById("incomeExpenseCanvas");
 
-new Chart(chartCanvas, {
+if (incomeExpenseChart) {
+    incomeExpenseChart.destroy();
+}
+
+incomeExpenseChart = new Chart(chartCanvas, {
     type: "bar",
 
     data: {
@@ -440,8 +465,13 @@ transactions.forEach(function (transaction) {
     }
 });
 const monthlyExpenseCanvas = document.getElementById("monthlyExpenseCanvas");
+ 
+if (monthlyExpenseChart) {
+    monthlyExpenseChart.destroy();
+}
 
-new Chart(monthlyExpenseCanvas, {
+monthlyExpenseChart = new Chart(monthlyExpenseCanvas, {
+   
     type: "line",
 
     data: {
