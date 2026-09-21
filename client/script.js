@@ -118,8 +118,9 @@ transactionForm.addEventListener("submit", async function (event) {
         const response = await fetch("http://localhost:5000/api/transactions", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
-            },
+                 "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+    },
             body: JSON.stringify(transaction)
         });
 
@@ -254,11 +255,14 @@ if (!confirmDelete) {
 
     try {
         const response = await fetch(
-            `http://localhost:5000/api/transactions/${transaction._id}`,
-            {
-                method: "DELETE"
-            }
-        );
+    `http://localhost:5000/api/transactions/${transaction._id}`,
+    {
+        method: "DELETE",
+        headers: {
+            "Authorization": `Bearer ${localStorage.getItem("token")}`
+        }
+    }
+);
 
         if (!response.ok) {
             throw new Error("Failed to delete transaction");
@@ -297,7 +301,8 @@ if (newTitle.trim() === "" || Number(newAmount) <= 0) {
             {
                 method: "PUT",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
                 },
                 body: JSON.stringify({
                     title: newTitle,
@@ -495,11 +500,21 @@ monthlyExpenseChart = new Chart(monthlyExpenseCanvas, {
 async function loadTransactions() {
 
     try {
-        const response = await fetch("http://localhost:5000/api/transactions");
+        const token = localStorage.getItem("token");
 
+const response = await fetch(
+    "http://localhost:5000/api/transactions",
+    {
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+    }
+);
         const data = await response.json();
 
         transactions = data;
+
+        console.log("Transactions loaded:", transactions);
 
         displayTransactions();
         updateSummary();
@@ -510,3 +525,12 @@ async function loadTransactions() {
 }
 
 loadTransactions();
+
+const logoutBtn = document.getElementById("logoutBtn");
+
+logoutBtn.addEventListener("click", function () {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+
+    window.location.href = "home.html";
+});
