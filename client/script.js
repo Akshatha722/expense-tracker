@@ -1,3 +1,9 @@
+const token = localStorage.getItem("token");
+
+if (!token) {
+    window.location.href = "login.html";
+}
+
 const transactionForm = document.getElementById("transactionForm");
 const transactionList = document.getElementById("transactionList");
 
@@ -534,3 +540,10 @@ logoutBtn.addEventListener("click", function () {
 
     window.location.href = "home.html";
 });
+
+const user = JSON.parse(localStorage.getItem("user"));
+
+if (user) {
+    document.getElementById("welcomeMessage").textContent =
+        `Welcome, ${user.name}! 👋`;
+}
