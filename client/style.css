@@ -684,3 +684,95 @@ body.dark-mode .transactions-link {
         height: 250px;
     }
 }
+
+/* Bigger Dashboard Transaction Search */
+
+.transaction-filters {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 14px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.transaction-filters input,
+.transaction-filters select {
+    height: 48px;
+    width: 100%;
+
+    padding: 0 16px;
+
+    border: 1px solid #dfe7e1;
+    border-radius: 10px;
+
+    background: #ffffff;
+    color: #27342b;
+
+    font-size: 14px;
+}
+
+.transaction-filters input {
+    min-width: 300px;
+}
+
+.transaction-filters input:focus,
+.transaction-filters select:focus {
+    outline: none;
+    border-color: #2e7d32;
+    box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.10);
+}
+
+
+@media (max-width: 800px) {
+    .transaction-filters {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 550px) {
+    .transaction-filters {
+        grid-template-columns: 1fr;
+    }
+
+    .transaction-filters input {
+        min-width: 0;
+    }
+}
+
+/* Extra Large Dashboard Search */
+
+.transaction-filters input#searchInput {
+    width: 100%;
+    min-width: 380px;
+    height: 52px;
+
+    padding: 0 18px;
+
+    font-size: 15px;
+    border-radius: 12px;
+}
+
+.transaction-filters {
+    grid-template-columns: 2.5fr 1fr 1fr 1fr;
+    gap: 16px;
+}
+
+/* Bigger Recent Transaction Text */
+
+.transaction-item strong {
+    font-size: 18px;
+}
+
+.transaction-item p {
+    font-size: 15px;
+}
+
+.transaction-item > div:last-child strong {
+    font-size: 19px;
+}
+
+.edit-btn,
+.delete-btn {
+    font-size: 14px;
+    padding: 7px 12px;
+}

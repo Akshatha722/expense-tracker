@@ -158,7 +158,8 @@ function applyFilters() {
     const filteredTransactions = transactions.filter(function (transaction) {
 
         const matchesSearch =
-            transaction.title.toLowerCase().includes(searchText);
+    transaction.title.toLowerCase().includes(searchText) ||
+    transaction.category.toLowerCase().includes(searchText);
 
         const matchesCategory =
             selectedCategory === "all" ||

@@ -1,38 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Transactions - Expense Tracker</title>
+
+    <link rel="stylesheet" href="transactions.css">
 </head>
 
 <body>
-    <body>
 
     <div class="transactions-page">
 
         <header class="transactions-header">
+
             <div>
                 <p class="page-label">MONEY MANAGEMENT</p>
+
                 <h1>Transactions</h1>
-                <p>View and manage all your income and expenses.</p>
+
+                <p>
+                    View and manage all your income and expenses.
+                </p>
             </div>
 
             <a href="index.html" class="back-btn">
                 ← Dashboard
             </a>
+
         </header>
 
+
         <main>
-            <div id="transactionList"></div>
+
+    <section class="transaction-summary">
+
+        <div class="summary-card balance-summary">
+            <p>Total Balance</p>
+            <h2 id="totalBalance">₹0</h2>
+        </div>
+
+        <div class="summary-card income-summary">
+            <p>Total Income</p>
+            <h2 id="totalIncome">₹0</h2>
+        </div>
+
+        <div class="summary-card expense-summary">
+            <p>Total Expenses</p>
+            <h2 id="totalExpenses">₹0</h2>
+        </div>
+
+    </section>
+
+
+    <section class="transactions-card">
+                <div class="transactions-card-header">
+
+    <div>
+        <p class="section-label">ACTIVITY</p>
+        <h2>All Transactions</h2>
+    </div>
+
+</div>
+
+<div class="transaction-filters">
+
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="🔍 Search transactions..."
+    >
+
+    <select id="categoryFilter">
+        <option value="all">All Categories</option>
+        <option value="Food">Food</option>
+        <option value="Transport">Transport</option>
+        <option value="Shopping">Shopping</option>
+        <option value="Bills">Bills</option>
+        <option value="Education">Education</option>
+        <option value="Salary">Salary</option>
+        <option value="Other source">Other source</option>
+    </select>
+
+    <select id="typeFilter">
+        <option value="all">All Types</option>
+        <option value="income">Income</option>
+        <option value="expense">Expense</option>
+    </select>
+
+    <select id="sortFilter">
+        <option value="newest">Newest First</option>
+        <option value="oldest">Oldest First</option>
+        <option value="highest">Highest Amount</option>
+        <option value="lowest">Lowest Amount</option>
+    </select>
+
+</div>
+                
+                <div id="transactionList"></div>
+
+                
+
+            </section>
+
         </main>
 
     </div>
-    <link rel="stylesheet" href="transactions.css">
+
+
     <script src="transactions.js"></script>
 
 </body>
-    
-</body>
+
 </html>
