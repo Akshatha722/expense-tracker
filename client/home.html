@@ -1,99 +1,477 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Expense Tracker</title>
+    <title>Expense Tracker | Take Control of Your Money</title>
 
     <link rel="stylesheet" href="home.css">
 </head>
 
 <body>
 
+    <!-- NAVBAR -->
     <header class="navbar">
 
         <div class="logo">
             Expense Tracker
         </div>
 
-        <div class="nav-buttons" id="navButtons">
+        <nav class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#analytics">Analytics</a>
+            <a href="#budget">Budget</a>
+        </nav>
+
+        <div class="nav-actions" id="navButtons">
             <a href="login.html" class="login-btn">Login</a>
-            <a href="register.html" class="register-btn">Get Started</a>
+            <a href="register.html" class="signup-btn">Get Started</a>
         </div>
 
     </header>
 
 
-    <main class="hero">
+    <!-- HERO -->
+    <section class="hero">
 
         <div class="hero-content">
 
-            <p class="small-text">
-                SMART MONEY MANAGEMENT
+            <p class="eyebrow">
+                SMART EXPENSE MANAGEMENT
             </p>
 
             <h1>
-                Take control of<br>
-                your <span>money.</span>
+                Take control of
+                <span>your money.</span>
             </h1>
 
-            <p class="description">
-                Track your income and expenses, understand your spending,
-                and manage your monthly budget — all in one place.
+            <p class="hero-description">
+                Track your expenses, understand your spending,
+                manage your budget and build better financial habits
+                — all in one simple place.
             </p>
 
             <div class="hero-buttons">
 
                 <a href="register.html" class="primary-btn">
-                    Start Tracking
+                    Start Tracking →
                 </a>
 
-                <a href="login.html" class="secondary-btn">
-                    Login
+                <a href="#features" class="secondary-btn">
+                    Explore Features
                 </a>
+
+            </div>
+
+            <p class="hero-note">
+                Simple • Secure • Personal
+            </p>
+
+        </div>
+
+
+        <div class="hero-visual">
+
+            <div class="dashboard-preview">
+
+                <div class="preview-top">
+                    <span>Monthly Overview</span>
+                    <span>September 2026</span>
+                </div>
+
+                <div class="preview-cards">
+
+                    <div class="preview-card income">
+                        <small>Total Income</small>
+                        <strong>₹45,000</strong>
+                    </div>
+
+                    <div class="preview-card expense">
+                        <small>Total Expenses</small>
+                        <strong>₹28,500</strong>
+                    </div>
+
+                    <div class="preview-card saving">
+                        <small>Savings</small>
+                        <strong>₹16,500</strong>
+                    </div>
+
+                </div>
+
+                <div class="preview-chart">
+
+                    <div class="chart-title">
+                        Spending Overview
+                    </div>
+
+                    <div class="fake-bars">
+                        <span style="height: 45%;"></span>
+                        <span style="height: 70%;"></span>
+                        <span style="height: 55%;"></span>
+                        <span style="height: 85%;"></span>
+                        <span style="height: 40%;"></span>
+                        <span style="height: 65%;"></span>
+                        <span style="height: 50%;"></span>
+                    </div>
+
+                </div>
 
             </div>
 
         </div>
 
+    </section>
 
-        <div class="hero-image">
 
-            <img
-                src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=900&q=80"
-                alt="Financial planning and expense management"
-            >
+    <!-- TRUST / INTRO -->
+    <section class="intro">
+
+        <p class="section-label">
+            EVERYTHING YOU NEED
+        </p>
+
+        <h2>
+            Your money. Your data. Your control.
+        </h2>
+
+        <p>
+            Expense Tracker brings your daily financial activity
+            together so you can spend smarter and save better.
+        </p>
+
+    </section>
+
+
+    <!-- FEATURES -->
+    <section class="features" id="features">
+
+        <div class="section-heading">
+
+            <p class="section-label">
+                FEATURES
+            </p>
+
+            <h2>
+                Everything you need to manage your money
+            </h2>
 
         </div>
 
-    </main>
+
+        <div class="feature-grid">
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    ₹
+                </div>
+
+                <h3>
+                    Track Expenses
+                </h3>
+
+                <p>
+                    Record your daily expenses and income
+                    in seconds.
+                </p>
+
+            </div>
 
 
-    <section class="features">
+            <div class="feature-card">
 
-        <div class="feature-card">
-            <h3>Track Expenses</h3>
-            <p>
-                Easily record and organize your daily transactions.
-            </p>
-        </div>
+                <div class="feature-icon">
+                    ◈
+                </div>
 
-        <div class="feature-card">
-            <h3>Understand Spending</h3>
-            <p>
-                Use charts to understand where your money goes.
-            </p>
-        </div>
+                <h3>
+                    Understand Spending
+                </h3>
 
-        <div class="feature-card">
-            <h3>Manage Your Budget</h3>
-            <p>
-                Set a monthly budget and keep your spending under control.
-            </p>
+                <p>
+                    See where your money goes with clear
+                    spending analytics.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    ✓
+                </div>
+
+                <h3>
+                    Manage Your Budget
+                </h3>
+
+                <p>
+                    Set spending limits and stay on track
+                    with your financial goals.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    ↗
+                </div>
+
+                <h3>
+                    View Analytics
+                </h3>
+
+                <p>
+                    Turn your transactions into useful
+                    financial insights.
+                </p>
+
+            </div>
+
         </div>
 
     </section>
+
+
+    <!-- HOW IT WORKS -->
+    <section class="feature-showcase" id="how-it-works">
+
+        <div class="showcase-content">
+
+            <p class="section-label">
+                TRACK
+            </p>
+
+            <h2>
+                Keep every transaction organized.
+            </h2>
+
+            <p>
+                Add your income and expenses, choose a category,
+                and keep your financial activity organized in one
+                place.
+            </p>
+
+            <a href="register.html" class="text-link">
+                Start tracking →
+            </a>
+
+        </div>
+
+
+        <div class="showcase-visual transaction-preview">
+
+            <div class="mini-header">
+                Recent Transactions
+            </div>
+
+            <div class="transaction-row">
+                <span>🛒 Grocery</span>
+                <strong>- ₹500</strong>
+            </div>
+
+            <div class="transaction-row">
+                <span>💼 Salary</span>
+                <strong class="positive">+ ₹5,000</strong>
+            </div>
+
+            <div class="transaction-row">
+                <span>👕 Shopping</span>
+                <strong>- ₹200</strong>
+            </div>
+
+            <div class="transaction-row">
+                <span>🍴 Food</span>
+                <strong>- ₹250</strong>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ANALYTICS -->
+    <section class="feature-showcase reverse" id="analytics">
+
+        <div class="showcase-content">
+
+            <p class="section-label">
+                ANALYZE
+            </p>
+
+            <h2>
+                Understand where your money goes.
+            </h2>
+
+            <p>
+                Use visual analytics to understand your spending
+                patterns and make better financial decisions.
+            </p>
+
+            <a href="login.html" class="text-link">
+                Explore your dashboard →
+            </a>
+
+        </div>
+
+
+        <div class="showcase-visual analytics-preview">
+
+            <div class="mini-header">
+                Spending by Category
+            </div>
+
+            <div class="analytics-bars">
+
+                <div>
+                    <span>Food</span>
+                    <div class="bar">
+                        <i style="width: 75%;"></i>
+                    </div>
+                </div>
+
+                <div>
+                    <span>Shopping</span>
+                    <div class="bar">
+                        <i style="width: 55%;"></i>
+                    </div>
+                </div>
+
+                <div>
+                    <span>Transport</span>
+                    <div class="bar">
+                        <i style="width: 40%;"></i>
+                    </div>
+                </div>
+
+                <div>
+                    <span>Bills</span>
+                    <div class="bar">
+                        <i style="width: 30%;"></i>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- BUDGET -->
+    <section class="feature-showcase" id="budget">
+
+        <div class="showcase-content">
+
+            <p class="section-label">
+                BUDGET
+            </p>
+
+            <h2>
+                Stay on top of your spending.
+            </h2>
+
+            <p>
+                Set monthly spending goals and see how much
+                you have used and how much you have left.
+            </p>
+
+            <a href="register.html" class="text-link">
+                Create your account →
+            </a>
+
+        </div>
+
+
+        <div class="showcase-visual budget-preview">
+
+            <div class="mini-header">
+                Monthly Budget
+            </div>
+
+            <div class="budget-amount">
+                ₹7,200 <span>of ₹10,000</span>
+            </div>
+
+            <div class="budget-progress">
+                <div></div>
+            </div>
+
+            <p>
+                ₹2,800 remaining this month
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- FINAL CTA -->
+    <section class="final-cta">
+
+        <p class="section-label">
+            GET STARTED
+        </p>
+
+        <h2>
+            Ready to take control of your money?
+        </h2>
+
+        <p>
+            Start tracking your income and expenses today.
+        </p>
+
+        <a href="register.html" class="primary-btn">
+            Get Started →
+        </a>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="footer-brand">
+
+            <h3>
+                Expense Tracker
+            </h3>
+
+            <p>
+                Simple tools for smarter money management.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <div>
+                <h4>Product</h4>
+                <a href="#features">Features</a>
+                <a href="#analytics">Analytics</a>
+                <a href="#budget">Budget</a>
+            </div>
+
+            <div>
+                <h4>Account</h4>
+                <a href="login.html">Login</a>
+                <a href="register.html">Register</a>
+            </div>
+
+        </div>
+
+    </footer>
+
+
     <script src="home.js"></script>
+
 </body>
+
 </html>
