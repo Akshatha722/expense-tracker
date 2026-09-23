@@ -2,6 +2,7 @@ const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
+const protect = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
@@ -95,6 +96,45 @@ router.post("/login", async (req, res) => {
     } catch (error) {
         res.status(500).json({
             message: "Login failed",
+            error: error.message
+        });
+    }
+});
+
+router.put("/profile", protect, async (req, res) => {
+    try {
+        const { name } = req.body;
+
+        if (!name || name.trim() === "") {
+            return res.status(400).json({
+                message: "Name is required"
+            });
+        }
+
+        const user = await User.findByIdAndUpdate(
+            req.userId,
+            { name: name.trim() },
+            { new: true }
+        );
+
+        if (!user) {
+            return res.status(404).json({
+                message: "User not found"
+            });
+        }
+
+        res.json({
+            message: "Profile updated successfully",
+            user: {
+                id: user._id,
+                name: user.name,
+                email: user.email
+            }
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            message: "Failed to update profile",
             error: error.message
         });
     }

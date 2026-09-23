@@ -84,6 +84,24 @@ function updateBudgetStatus() {
 
     const remaining = monthlyBudget - currentMonthExpenses;
 
+
+    const budgetPercentage =
+    monthlyBudget > 0
+        ? Math.min((currentMonthExpenses / monthlyBudget) * 100, 100)
+        : 0;
+
+const budgetProgress =
+    document.getElementById("budgetProgress");
+
+const budgetPercentageElement =
+    document.getElementById("budgetPercentage");
+
+budgetProgress.style.width =
+    `${budgetPercentage}%`;
+
+budgetPercentageElement.textContent =
+    `${Math.round(budgetPercentage)}% used`;
+    
     budgetStatus.innerHTML = `
         <p>Budget: ₹${monthlyBudget}</p>
         <p>Spent: ₹${currentMonthExpenses}</p>

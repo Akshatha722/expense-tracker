@@ -1,0 +1,302 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+
+    background-image:
+        linear-gradient(
+            rgba(248, 250, 247, 0.90),
+            rgba(248, 250, 247, 0.90)
+        ),
+        url("images/bg.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+    color: #27342b;
+}
+
+.profile-page {
+    min-height: 100vh;
+    padding: 40px 7%;
+}
+
+
+/* Header */
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 35px;
+}
+
+.page-label,
+.section-label {
+    color: #2e7d32;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+}
+
+.profile-header h1 {
+    font-size: 42px;
+    margin-bottom: 8px;
+}
+
+.profile-header p:last-child {
+    color: #68736c;
+    font-size: 16px;
+}
+
+
+/* Back button */
+
+.back-btn {
+    text-decoration: none;
+
+    background: #ffffff;
+    color: #2e7d32;
+
+    padding: 12px 20px;
+
+    border-radius: 10px;
+
+    font-weight: 600;
+
+    border: 1px solid #dfe7e1;
+
+    transition: 0.2s ease;
+}
+
+.back-btn:hover {
+    background: #2e7d32;
+    color: #ffffff;
+}
+
+
+/* Profile cards */
+
+.profile-card {
+    background: rgba(255, 255, 255, 0.94);
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    border: 1px solid rgba(30, 80, 50, 0.08);
+
+    box-shadow: 0 10px 30px rgba(30, 60, 40, 0.08);
+
+    margin-bottom: 25px;
+}
+
+
+/* User information */
+
+.profile-card:first-child {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+
+    border-radius: 50%;
+
+    background: #e8f7ed;
+    color: #2e7d32;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.profile-info h2 {
+    font-size: 26px;
+    margin-bottom: 6px;
+}
+
+.profile-info > p:last-child {
+    color: #68736c;
+}
+
+
+/* Financial overview */
+
+.section-heading {
+    margin-bottom: 25px;
+}
+
+.section-heading h2 {
+    font-size: 22px;
+}
+
+.profile-stats {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 16px;
+}
+
+.profile-stat {
+    background: #f7f9f7;
+
+    padding: 20px;
+
+    border-radius: 14px;
+}
+
+.profile-stat p {
+    color: #68736c;
+
+    font-size: 13px;
+
+    margin-bottom: 8px;
+}
+
+.profile-stat h3 {
+    font-size: 22px;
+}
+
+.profile-stat:nth-child(1) h3 {
+    color: #2e7d32;
+}
+
+.profile-stat:nth-child(2) h3 {
+    color: #16803c;
+}
+
+.profile-stat:nth-child(3) h3 {
+    color: #c0392b;
+}
+
+
+/* Account actions */
+
+.account-actions {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+#logoutBtn {
+    border: none;
+
+    background: #c0392b;
+    color: white;
+
+    padding: 12px 22px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+#logoutBtn:hover {
+    background: #a93226;
+}
+
+
+/* Responsive */
+
+@media (max-width: 800px) {
+
+    .profile-page {
+        padding: 30px 5%;
+    }
+
+    .profile-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .profile-header h1 {
+        font-size: 34px;
+    }
+
+    .profile-stats {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .profile-page {
+        padding: 25px 4%;
+    }
+
+    .profile-card {
+        padding: 22px;
+    }
+
+    .profile-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .account-actions {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    #logoutBtn {
+        width: 100%;
+    }
+}
+
+.profile-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.edit-profile-btn {
+    border: none;
+    background: #2e7d32;
+    color: white;
+    padding: 12px 22px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.edit-profile-btn:hover {
+    background: #256b29;
+}
+
+@media (max-width: 500px) {
+    .profile-actions {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .edit-profile-btn,
+    #logoutBtn {
+        width: 100%;
+    }
+}

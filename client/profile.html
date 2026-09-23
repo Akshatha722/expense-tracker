@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Profile - Expense Tracker</title>
+
+    <link rel="stylesheet" href="profile.css">
+</head>
+
+<body>
+
+    <div class="profile-page">
+
+        <header class="profile-header">
+
+            <div>
+                <p class="page-label">ACCOUNT</p>
+
+                <h1>My Profile</h1>
+
+                <p>
+                    Manage your account and view your financial overview.
+                </p>
+            </div>
+
+            <a href="index.html" class="back-btn">
+                ← Dashboard
+            </a>
+
+        </header>
+
+
+        <main>
+
+            <!-- User Information -->
+
+            <section class="profile-card">
+
+                <div class="profile-avatar" id="profileAvatar">
+                    U
+                </div>
+
+                <div class="profile-info">
+
+                    <p class="section-label">PERSONAL INFORMATION</p>
+
+                    <h2 id="profileName">User</h2>
+
+                    <p id="profileEmail">
+                        user@example.com
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- Financial Overview -->
+
+            <section class="profile-card">
+
+                <div class="section-heading">
+
+                    <p class="section-label">
+                        FINANCIAL OVERVIEW
+                    </p>
+
+                    <h2>Your Money</h2>
+
+                </div>
+
+
+                <div class="profile-stats">
+
+                    <div class="profile-stat">
+                        <p>Total Balance</p>
+                        <h3 id="profileBalance">₹0</h3>
+                    </div>
+
+                    <div class="profile-stat">
+                        <p>Total Income</p>
+                        <h3 id="profileIncome">₹0</h3>
+                    </div>
+
+                    <div class="profile-stat">
+                        <p>Total Expenses</p>
+                        <h3 id="profileExpenses">₹0</h3>
+                    </div>
+
+                    <div class="profile-stat">
+                        <p>Transactions</p>
+                        <h3 id="profileTransactionCount">0</h3>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Account Actions -->
+
+            <section class="profile-card account-actions">
+
+                <div>
+                    <p class="section-label">ACCOUNT</p>
+
+                    <h2>Account Actions</h2>
+                </div>
+
+                <div class="profile-actions">
+    <button id="editProfileBtn" class="edit-profile-btn">
+        ✏️ Edit Profile
+    </button>
+
+    <button id="logoutBtn">
+        Logout
+    </button>
+</div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <script src="profile.js"></script>
+
+</body>
+
+</html>

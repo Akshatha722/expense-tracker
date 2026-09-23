@@ -664,4 +664,23 @@ body {
     }
 
 }
-```
+
+
+
+/* Center the Made By line at the bottom of the footer */
+
+footer {
+    position: relative;
+}
+
+footer .made-by {
+    position: absolute;
+    left: 50%;
+    bottom: 25px;
+    transform: translateX(-50%);
+    width: max-content;
+    margin: 0;
+    padding: 0;
+    border: none;
+    text-align: center;
+}
